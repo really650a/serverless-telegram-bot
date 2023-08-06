@@ -1,4 +1,4 @@
-import os
+"""import os
 import json
 import requests
 from flask import Flask
@@ -44,3 +44,22 @@ def index():
         allImages = response_text["images"]
         sendMediaGroup(chat_id, allImages)
     return Response("ok", status=200)
+"""
+import telebot
+from flask import Flask, request
+
+TOKEN = "6457745689:AAGK_N4F-8KPw7zpnGf8NfFZrpTD2RhkotM"
+bot = telebot.TeleBot(TOKEN)
+
+app = Flask(__name__)
+
+@app.route('/{}'.format(TOKEN), methods=['POST'])
+def handle_webhook():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "OK", 200
+
+@app.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://serverless-telegram-bot.vercel.app/" + TOKEN)
+    return "Webhook successfully set up"
