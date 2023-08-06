@@ -59,7 +59,8 @@ def start(message):
     bot.send_message(message.chat.id, "Hello!")
 
 
-@app.route('/{}'.format(TOKEN), methods=['POST'])
+#@app.route('/{}'.format(TOKEN), methods=['POST'])
+@app.post("/")
 def handle_webhook():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "OK", 200
@@ -70,5 +71,3 @@ def webhook():
     bot.set_webhook(url="https://serverless-telegram-bot.vercel.app/" + TOKEN)
     return "Webhook successfully set up"
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
