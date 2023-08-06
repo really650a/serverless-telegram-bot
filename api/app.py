@@ -62,12 +62,12 @@ def start(message):
 #@app.route('/{}'.format(TOKEN), methods=['POST'])
 @app.post("/")
 def handle_webhook():
-    bot.process_new_updates([telebot.types.Update.de_json(request.get_json().stream.read().decode("utf-8"))])
+    bot.process_new_updates([telebot.types.Update.de_json(request.get_json())])
     return "OK", 200
 
-@app.route("/")
+"""@app.route("/")
 def webhook():
     bot.remove_webhook()
     bot.set_webhook(url="https://serverless-telegram-bot.vercel.app/" + TOKEN)
     return "Webhook successfully set up"
-
+"""
