@@ -53,6 +53,12 @@ bot = telebot.TeleBot(TOKEN)
 
 app = Flask(__name__)
 
+@bot.message_handler(commands=["start"])
+def start(message):
+    print("Received start command:", message)
+    bot.send_message(message.chat.id, "Hello!")
+
+
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def handle_webhook():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
