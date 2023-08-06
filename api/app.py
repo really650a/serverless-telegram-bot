@@ -45,3 +45,6 @@ def index():
         allImages = response_text["images"]
         sendMediaGroup(chat_id, allImages)
     return Response("ok", status=200)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
