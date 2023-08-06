@@ -61,7 +61,7 @@ def start(message):
 
 
 @app.post("/")
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    bot.process_new_updates([telebot.types.Update.de_json(request.get_json())])
     return "OK", 200
 
 
