@@ -62,7 +62,7 @@ def start(message):
 #@app.route('/{}'.format(TOKEN), methods=['POST'])
 @app.post("/")
 def handle_webhook():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    bot.process_new_updates([telebot.types.Update.de_json(request.get_json().stream.read().decode("utf-8"))])
     return "OK", 200
 
 @app.route("/")
