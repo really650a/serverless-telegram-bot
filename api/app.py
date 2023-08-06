@@ -1,4 +1,4 @@
-"""import os
+import os
 import json
 import requests
 from flask import Flask
@@ -45,23 +45,3 @@ def index():
         allImages = response_text["images"]
         sendMediaGroup(chat_id, allImages)
     return Response("ok", status=200)
-"""
-import telebot
-from flask import Flask, request
-
-TOKEN = "6457745689:AAGK_N4F-8KPw7zpnGf8NfFZrpTD2RhkotM"
-bot = telebot.TeleBot(TOKEN)
-
-app = Flask(__name__)
-
-@bot.message_handler(commands=["start"])
-def start(message):
-    print("Received start command:", message)
-    bot.send_message(message.chat.id, "Hello!")
-
-
-@app.post("/")
-    bot.process_new_updates([telebot.types.Update.de_json(request.get_json())])
-    return "OK", 200
-
-
