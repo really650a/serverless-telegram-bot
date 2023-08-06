@@ -36,7 +36,7 @@ def index():
     chat_id = msg["message"]["chat"]["id"]
     inputText = msg["message"]["text"]
     if inputText == "/start":
-        sendMessage(chat_id, msg)
+        #sendMessage(chat_id, msg)
         sendMessage(chat_id, "Ya, I am Online. Send me a Prompt")
     else:
         BASE_URL = "https://lexica.art/api/v1/search?q=" + str(inputText)
