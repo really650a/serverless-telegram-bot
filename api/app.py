@@ -1,4 +1,4 @@
-"""import os
+import os
 import json
 import requests
 from flask import Flask
@@ -8,6 +8,8 @@ import telebot
 
 app = Flask(__name__)
 TOKEN = "6457745689:AAGK_N4F-8KPw7zpnGf8NfFZrpTD2RhkotM"
+
+bot = telebot.TeleBot(TOKEN)
 
 def imageAsDict(imageURL, caption):
     return {
@@ -30,10 +32,17 @@ def sendMessage(chat_id, text):
     r = requests.post(url, json=payload)
     return r
 
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+
 @app.post("/")
 def index():
     msg = request.get_json()
-    chat_id = msg["message"]["chat"]["id"]
+    update = telebot.types.Update.de_json(msg)
+    bot.process_new_updates([update])
+    """chat_id = msg["message"]["chat"]["id"]
     inputText = msg["message"]["text"]
     if inputText == "/start":
         #sendMessage(chat_id, msg)
@@ -45,11 +54,10 @@ def index():
         allImages = response_text["images"]
         sendMediaGroup(chat_id, allImages)
     return Response("ok", status=200)
-
+""""
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-"""
-import telebot
+"""import telebot
 
 TOKEN = '6457745689:AAGK_N4F-8KPw7zpnGf8NfFZrpTD2RhkotM'
 bot = telebot.TeleBot(TOKEN)
@@ -72,3 +80,4 @@ def getMessage():
     update = telebot.types.Update.de_json(json_string)
     bot.process_new_updates([update])
     return "!", 200
+    """
