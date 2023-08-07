@@ -31,13 +31,13 @@ def sendMessage(chat_id, text):
     payload = {"chat_id": chat_id, "text": text}
     r = requests.post(url, json=payload)
     return r
-
+"""
 
 """@bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Hello,')
 """
-
+"""
 @app.post("/")
 def index():
     msg = request.get_json()
