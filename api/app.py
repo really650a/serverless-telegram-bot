@@ -33,9 +33,9 @@ def sendMessage(chat_id, text):
     return r
 
 
-#@bot.message_handler(commands=['start'])
-#def start(message):
-    #bot.reply_to(message, 'Hello,')
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.reply_to(message, 'Hello,')
 
 @app.post("/")
 def index():
