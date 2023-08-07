@@ -35,17 +35,17 @@ def sendMessage(chat_id, text):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+    bot.reply_to(message, 'Hello,')
 
 @app.post("/")
 def index():
     msg = request.get_json()
-    update = telebot.types.Update.de_json(msg)
-    bot.process_new_updates([update])
-    """chat_id = msg["message"]["chat"]["id"]
+    #update = telebot.types.Update.de_json(msg)
+    #bot.process_new_updates([update])
+    chat_id = msg["message"]["chat"]["id"]
     inputText = msg["message"]["text"]
     if inputText == "/start":
-        #sendMessage(chat_id, msg)
+        sendMessage(chat_id, msg)
         sendMessage(chat_id, "Ya, I am Online. Send me a Prompt")
     else:
         BASE_URL = "https://lexica.art/api/v1/search?q=" + str(inputText)
@@ -54,7 +54,7 @@ def index():
         allImages = response_text["images"]
         sendMediaGroup(chat_id, allImages)
     return Response("ok", status=200)
-"""
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 """import telebot
