@@ -9,7 +9,7 @@ import telebot
 app = Flask(__name__)
 TOKEN = "6457745689:AAGK_N4F-8KPw7zpnGf8NfFZrpTD2RhkotM"
 
-#bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(TOKEN)
 
 def imageAsDict(imageURL, caption):
     return {
