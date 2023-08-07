@@ -40,9 +40,9 @@ def start(message):
 @app.post("/")
 def index():
     msg = request.get_json()
-    #update = telebot.types.Update.de_json(msg)
-    #bot.process_new_updates([update])
-    chat_id = msg["message"]["chat"]["id"]
+    update = telebot.types.Update.de_json(msg)
+    bot.process_new_updates([update])
+    """chat_id = msg["message"]["chat"]["id"]
     inputText = msg["message"]["text"]
     if inputText == "/start":
         sendMessage(chat_id, msg)
@@ -54,6 +54,6 @@ def index():
         allImages = response_text["images"]
         sendMediaGroup(chat_id, allImages)
     return Response("ok", status=200)
-
+"""
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
