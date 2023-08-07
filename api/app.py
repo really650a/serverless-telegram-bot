@@ -37,7 +37,7 @@ def sendMessage(chat_id, text):
 def start(message):
     bot.reply_to(message, 'Hello,')
 
-@app.post("/")
+@app.post("/"+TOKEN)
 def index():
     msg = request.get_json()
     update = telebot.types.Update.de_json(msg)
