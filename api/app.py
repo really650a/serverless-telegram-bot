@@ -21,7 +21,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://flask1.tolasaa.repl.co/' + TOKEN)
+    bot.set_webhook(url='https://serverless-telegram-bot.vercel.app/' + TOKEN)
     return "ok", 200
 
 if __name__ == "__main__":
